@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -48,5 +49,44 @@ class AuthController extends Controller
     public function logout() {
         Auth::logout();
         return redirect('/login');
+    }
+
+    public function showFPForm(){
+        return view('auth.forgot-password');
+    }
+
+    public function forgotPassword(Request $request){
+        $request->validate(['email' => 'required|email']);
+
+        Password::sendResetLink(
+            $request->only('email')
+        );
+
+        return back()->with('status', 'Enlace enviado a tu correo.');
+    }
+
+    public function showRPForm($token){
+        return view('auth.reset-password', ['token' => $token]);
+    }
+
+    public function resetPassword(Request $request){
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->save();
+            }
+        );
+
+        return $status == Password::PASSWORD_RESET
+            ? redirect()->route('login')->with('status', 'Contraseña restablecida')
+            : back()->withErrors(['email' => __($status)]);
     }
 }

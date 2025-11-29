@@ -7,7 +7,7 @@
     <input type="password" name="password" placeholder="Contraseña" required>
     <label><input type="checkbox" name="remember"> Recuérdame</label>
     <button type="submit">Entrar</button>
-    <a href="{{ route('password.request') }}" class="link">¿Olvidaste tu contraseña?</a>
+    <a href="{{ route('forgot_password_view') }}" class="link">¿Olvidaste tu contraseña?</a>
     <a href="{{ url('/register') }}" class="link">Registrarse</a>
     @if ($errors->any())
         <div class="error">{{ $errors->first() }}</div>

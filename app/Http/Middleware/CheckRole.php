@@ -16,7 +16,8 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, $roles): Response
     {
-        if (!Auth::check() || !in_array(Auth::user()->role, $roles)) {
+        $rolesArray = explode(',', $roles); // Convertir a arreglo
+        if (!Auth::check() || !in_array(Auth::user()->role, $rolesArray)) {
             abort(403);
         }
         return $next($request);

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <h2>Restablecer Contraseña</h2>
-<form method="POST" action="{{ route('password.update') }}">
+<form method="POST" action="{{ route('reset_password') }}">
     @csrf
     <input type="hidden" name="token" value="{{ $token }}">
     <input type="email" name="email" placeholder="Correo" required>
