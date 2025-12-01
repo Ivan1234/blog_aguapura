@@ -4,7 +4,7 @@
 
 @section('contenido')
 <header class="news-header container">
-    <h2 class="news-heading">Últimas Noticias</h2>
+    <h2 class="news-heading">TENDENCIAS</h2>
     <p class="news-subheading">Mantente informado con lo más relevante de México y el mundo</p>
      <div class="trending-badge">
         <span class="fire-icon">🔥</span>
@@ -139,6 +139,178 @@
     </div>
     <div class="see-more-container">
         <button id="load-more" class="see-more-btn">Ver más</button>
+    </div>
+</section>
+
+<section class="container">
+    <div class="row justify-content-between g-4">
+        <section class="nscad col-4">
+            <div class="ctgagral">Política</div>
+            <article class="mnnws">
+                <img src="{{asset('img/reciente9.jpg')}}" alt="">
+                <span class="fchapbcn">12 de julio de 2025</span>
+                <h2>Impactante suceso cambia el rumbo de la ciudad</h2>
+            </article>
+            <article class="scdarnws">
+                <h3>Detalles adicionales del acontecimiento</h3>
+                <span class="fchapbnsdra">12 de julio de 2025</span>
+                <p>
+                    Las primeras declaraciones oficiales indican que el hecho podría tener implicaciones importantes...
+                </p>
+            </article>
+        </section>
+
+        <!-- Tarjeta 2 -->
+        <section class="nscad col-4">
+            <div class="ctgagral">Política</div>
+            <article class="mnnws">
+                <img src="{{asset('img/reciente9.jpg')}}" alt="">
+                <span class="fchapbcn">12 de julio de 2025</span>
+                <h2>Nueva tecnología promete mejorar la calidad de vida</h2>
+            </article>
+            <article class="scdarnws">
+                <h3>Desarrollo y pruebas iniciales</h3>
+                <span class="fchapbnsdra">12 de julio de 2025</span>
+                <p>
+                    Expertos señalan que esta innovación podría estar disponible al público antes de lo previsto...
+                </p>
+            </article>
+        </section>
+
+        <!-- Tarjeta 3 -->
+        <section class="nscad col-4">
+            <div class="ctgagral">Política</div>
+            <article class="mnnws">
+                <img src="{{asset('img/reciente9.jpg')}}" alt="">
+                <span class="fchapbcn">12 de julio de 2025</span>
+                <h2>La economía presenta señales de recuperación</h2>
+            </article>
+            <article class="scdarnws">
+                <h3>Analistas optimistas</h3>
+                <span class="fchapbnsdra">12 de julio de 2025</span>
+                <p>
+                    Los indicadores comienzan a mostrar un comportamiento positivo luego de varios meses de incertidumbre…
+                </p>
+            </article>
+        </section>
+
+        <!-- Tarjeta 4 -->
+        <section class="nscad col-4">
+            <div class="ctgagral">Política</div>
+            <article class="mnnws">
+                <img src="{{asset('img/reciente9.jpg')}}" alt="">
+                <span class="fchapbcn">12 de julio de 2025</span>
+                <h2>Descubren nueva especie en la selva amazónica</h2>
+            </article>
+            <article class="scdarnws">
+                <h3>Un hallazgo sorprendente</h3>
+                <span class="fchapbnsdra">12 de julio de 2025</span>
+                <p>
+                    Investigadores aseguran que esta especie podría aportar información valiosa sobre la biodiversidad...
+                </p>
+            </article>
+        </section>
+
+        <!-- Tarjeta 5 -->
+        <section class="nscad col-4">
+            <div class="ctgagral">Política</div>
+            <article class="mnnws">
+                <img src="{{asset('img/reciente9.jpg')}}" alt="">
+                <span class="fchapbcn">12 de julio de 2025</span>
+                <h2>Evento cultural reúne a miles de asistentes</h2>
+            </article>
+            <article class="scdarnws">
+                <h3>Un éxito total</h3>
+                <span class="fchapbnsdra">12 de julio de 2025</span>
+                <p>
+                    Artistas de todo el mundo participaron en esta edición que superó todas las expectativas...
+                </p>
+            </article>
+        </section>
+
+        <!-- Tarjeta 6 -->
+        <section class="nscad col-4">
+            <div class="ctgagral">Política</div>
+            <article class="mnnws">
+                <img src="{{asset('img/reciente9.jpg')}}" alt="">
+                <span class="fchapbcn">12 de julio de 2025</span>
+                <h2>Aumentan campañas de concientización ambiental</h2>
+            </article>
+            <article class="scdarnws">
+                <h3>Participación de jóvenes</h3>
+                <span class="fchapbnsdra">12 de julio de 2025</span>
+                <p>
+                    Las nuevas generaciones están tomando un papel clave en la lucha contra el cambio climático...
+                </p>
+            </article>
+        </section>
+    </div>
+</section>
+
+<!-- VIDEOS ANIMALITOS -->
+<section class="vdsamts">
+    <header class="latest-news-header">
+        <h2 class="latest-news-title">Videos de animalitos</h2>
+        <div class="latest-badge">🐥 Tus videos favoritos</div>
+        <p class="latest-subheading">Lo mas tierno, lo más antiestres</p>
+    </header>
+
+    <div class="container">
+        <div class="row justify-content-around">
+            <!-- Tarjeta 1 -->
+            <div class="vdacrd col-2">
+                <div class="vdothm">
+                    <video src="{{asset('videos/prueba.mp4')}}" muted></video>
+                </div>
+                <p class="vdodscpn">
+                    Un tierno gatito jugando con una bola de estambre mientras rueda por la sala.
+                </p>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="vdacrd col-2">
+                <div class="vdothm">
+                    <video src="{{asset('videos/prueba.mp4')}}" muted></video>
+                </div>
+                <p class="vdodscpn">
+                    Un perrito bebé persiguiendo burbujas en un jardín soleado.
+                </p>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="vdacrd col-2">
+                <div class="vdothm">
+                    <video src="{{asset('videos/prueba.mp4')}}" muted></video>
+                </div>
+                <p class="vdodscpn">
+                    Un hamster corriendo dentro de una mini pista de obstáculos súper ingeniosa.
+                </p>
+            </div>
+
+            <!-- Tarjeta 4 -->
+            <div class="vdacrd col-2">
+                <div class="vdothm">
+                    <video src="{{asset('videos/prueba.mp4')}}" muted></video>
+                </div>
+                <p class="vdodscpn">
+                    Un pequeño patito intentando imitar a su mamá mientras caminan juntos.
+                </p>
+            </div>
+
+            <!-- Tarjeta 5 -->
+            <div class="vdacrd col-2">
+                <div class="vdothm">
+                    <video src="{{asset('videos/prueba.mp4')}}" muted></video>
+                </div>
+                <p class="vdodscpn">
+                    Un zorrillito bebé explorando por primera vez un bosque lleno de hojas.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="btnmsctn">
+        <button class="btnmstms">Mostrar más</button>
     </div>
 </section>
 @endsection
