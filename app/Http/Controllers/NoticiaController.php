@@ -12,7 +12,8 @@ class NoticiaController extends Controller
      */
     public function index()
     {
-        //
+        $noticias = Noticia::latest()->paginate(10);
+        return view('noticias.index', compact('noticias'));       
     }
 
     /**
@@ -28,7 +29,15 @@ class NoticiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+            'titulo' => 'required|string|max:255',
+            'contenido' => 'required',
+            'imagen_principal' => 'nullable|string'
+        ]);
+
+        $nota = Noticia::create($request->all());
+
+        return redirect()->route('notas.show', $nota);
     }
 
     /**
@@ -36,7 +45,7 @@ class NoticiaController extends Controller
      */
     public function show(Noticia $noticia)
     {
-        //
+        return view('noticias.show', compact('noticia'));
     }
 
     /**

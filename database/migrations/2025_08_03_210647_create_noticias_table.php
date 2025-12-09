@@ -14,23 +14,25 @@ return new class extends Migration
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title');                      // Título de la noticia
-            $table->string('slug')->unique();            // URL amigable
-            $table->string('image')->nullable();         // Imagen destacada
-            $table->text('summary');                     // Resumen breve
-            $table->longText('body');                    // Cuerpo completo
+            $table->string('title');                        // Título de la noticia
+            $table->string('slug')->unique();               // URL amigable
+            $table->string('image')->nullable();            // Imagen destacada
+            $table->text('summary');                        // Resumen breve
+            $table->longText('body');                       // Cuerpo completo
 
-            $table->foreignId('categoria_id')             // Categoría 
+            $table->foreignId('categoria_id')               // Categoría 
                 ->constrained('categorias', 'id')
-                ->onDelete('cascade');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
-            $table->foreignId('autor_id')               // Autor o redactor
+            $table->foreignId('autor_id')                   // Autor o redactor
                 ->nullable()
                 ->constrained('users', 'id')
-                ->onDelete('set null');
+                ->onDelete('set null')
+                ->onUpdate('cascade');
                 
 
-            $table->boolean('featured')->default(false); // Si es una noticia destacada
+            $table->boolean('featured')->default(false);    // Si es una noticia destacada
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft'); // Estado
 
             $table->timestamp('published_at')->nullable(); // Fecha y hora de publicación

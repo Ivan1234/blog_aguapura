@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NoticiaController;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +32,11 @@ Route::controller(AuthController::class)->group(function(){
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::controller(NoticiaController::class)->group(function(){
+    Route::get('/noticias', 'index')->name('noticias.index');
+    Route::get('/noticias/{noticia}', 'show')->name('noticias.show');
+});
 
 // Route::middleware(['auth'])->group(function () {
 //     Route::get('/dashboard', function () {

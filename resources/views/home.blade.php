@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Últimas Noticias')
+@section('titulo', 'Últimas Noticias | Noti-pura')
 
 @section('contenido')
 <header class="news-header container">
