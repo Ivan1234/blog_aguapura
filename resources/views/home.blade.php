@@ -2,6 +2,10 @@
 
 @section('titulo', 'Últimas Noticias | Noti-pura')
 
+@section('estilos')
+<link rel="stylesheet" href="{{ asset('css/noticias.css') }}">
+@endsection
+
 @section('contenido')
 <header class="news-header container">
     <h2 class="news-heading">TENDENCIAS</h2>
