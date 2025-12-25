@@ -9,10 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" href="{{asset('img/logo.png')}}">
+
+    @stack('head')
 </head>
 <body>
     <header class="navbar">
-        <div class="logo"><img src="{{asset('img/logo.png')}}" alt="logo aguapura" width="55px" height="46">Noti<span>Pura</span></div>
+        <div class="logo"><a href="{{route('home')}}" style="text-decoration: none;"><img src="{{asset('img/logo.png')}}" alt="logo aguapura" width="55px" height="46">Noti<span>Pura</span></a></div>
         <nav>
             <a href="#">Puebla</a>
             <a href="#">México</a>
@@ -31,7 +33,7 @@
         <div class="container">
             <div class="ftrgd">
                 <div class="ftrcol">
-                    <h2 class="ftrlg"><img src="{{asset('img/logo.png')}}" alt="logo aguapura" width="55px" height="46">NotiPura</h2>
+                    <h2 class="ftrlg"><a href="{{route('home')}}" style="text-decoration: none;"><img src="{{asset('img/logo.png')}}" alt="logo aguapura" width="55px" height="46">NotiPura</a></h2>
                     <p class="ftrdsc">
                         El portal de noticias más confiable. Información clara, verificada y al instante.
                     </p>
@@ -78,7 +80,7 @@
             </div>
 
             <div class="ftrbttm">
-                <p>© 2025 MiPortalNews. Todos los derechos reservados.</p>
+                <p>© 2025 Notipura. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>

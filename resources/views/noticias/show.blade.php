@@ -6,6 +6,16 @@
 <link rel="stylesheet" href="{{asset('css/noticia.css')}}">
 @endsection
 
+@push('head')
+    <meta name="description" content="{{ $noticia->meta_descripcion }}">
+    <link rel="canonical" href="{{ $noticia->canonical_url ?? $noticia->url }}">
+
+    <meta property="og:title" content="{{ $noticia->og_titulo ?? $noticia->titulo }}">
+    <meta property="og:description" content="{{ $noticia->og_descripcion ?? $noticia->meta_descripcion }}">
+    <meta property="og:image" content="{{ asset($noticia->og_imagen ?? $noticia->imagen_principal) }}">
+    <meta property="og:type" content="article">
+@endpush
+
 @section('contenido')
     <div class="ctner">
         <!-- Contenido principal -->

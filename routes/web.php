@@ -34,8 +34,8 @@ Route::controller(AuthController::class)->group(function(){
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::controller(NoticiaController::class)->group(function(){
-    Route::get('/noticias', 'index')->name('noticias.index');
-    Route::get('/noticias/{noticia}', 'show')->name('noticias.show');
+    Route::get('/newsc', 'index')->name('noticias.index');
+    Route::get('/newsc/{noticia}', 'show')->name('noticias.show');
 });
 
 // Route::middleware(['auth'])->group(function () {
