@@ -114,6 +114,14 @@
             <div class="ad ad-side">
                 <p>Publicidad</p>
             </div>
+
+            <div class="ad ad-side">
+                <p>Publicidad</p>
+            </div>
+
+            <div class="ad ad-side">
+                <p>Publicidad</p>
+            </div>
         </aside>
     </div>
 @endsection
