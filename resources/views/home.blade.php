@@ -15,6 +15,16 @@
         En Tendencia Ahora
     </div>
 </header>
+
+<section class="ads ads-top container">
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-XXXXXXXXXXXX"
+        data-ad-slot="1111111111"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+</section>
+
 <section class="container">
     <div class="row">
         <a href="#" class="news-card col-lg-8 mb-4">
@@ -26,7 +36,7 @@
             </div>
         </a>
         <div class="col-lg-4">
-            <div class="row justify-content-center align-items-center" style="height: 500px;">
+            <div class="row justify-content-center align-items-center" style="height: 600px;">
                 <a href="#" class="news-card-secundario col-11">
                     <div class="news-image-secundario" style="background-image: url({{asset('img/secundario1.jpg')}});"></div>
                     <div class="news-card-body-secundario">
@@ -48,6 +58,16 @@
     </div>
 </section>
 
+<div class="container">
+    <div class="ads my-4">
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-XXXXXXXXXXXX"
+            data-ad-slot="2222222222"
+            data-ad-format="auto"></ins>
+    </div>  
+</div>
+
 <section class="latest-news my-5">
     <div class="container" style="padding: 30px 0;">
         <!-- Encabezado -->
@@ -58,87 +78,135 @@
         </header>
     
         <!-- Grid de últimas noticias -->
-        <div class="row">
-            <!-- Noticia 1 -->
-            <a href="#" class="latest-card col-md-4">
-                <div class="latest-image" style="background-image: url('{{asset('img/reciente1.jpg')}}');"></div>
-                <div class="latest-body">
-                    <h5 class="latest-category">Política</h5>
-                    <h3 class="latest-title">Nuevo acuerdo comercial entre México y Canadá</h3>
+        <div class="row align-items-start">
+            <div class="col-lg-3 ads-sidebar">
+                <aside class="ads-2 mb-4" style="width: 100%;">
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-XXXXXXXXXXXX"
+                        data-ad-slot="3333333333"
+                        data-ad-format="rectangle"></ins>
+                </aside>
+
+                <aside class="ads-2 mb-4" style="width: 100%;">
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-XXXXXXXXXXXX"
+                        data-ad-slot="3333333333"
+                        data-ad-format="rectangle"></ins>
+                </aside>
+
+                <aside class="ads-2 mb-4" style="width: 100%;">
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-XXXXXXXXXXXX"
+                        data-ad-slot="3333333333"
+                        data-ad-format="rectangle"></ins>
+                </aside>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="row justify-content-around">
+                    <!-- Noticia 1 -->
+                    <div class="col-md-4">
+                        <a href="#" class="latest-card">
+                            <div class="latest-image" style="background-image: url('{{asset('img/reciente1.jpg')}}');"></div>
+                            <div class="latest-body">
+                                <h5 class="latest-category">Política</h5>
+                                <h3 class="latest-title">Nuevo acuerdo comercial entre México y Canadá</h3>
+                            </div>
+                        </a>
+                    </div>    
+            
+                    <!-- Noticia 2 -->
+                    <div class="col-md-4">
+                        <a href="#" class="latest-card">
+                            <div class="latest-image" style="background-image: url('{{asset('img/reciente2.jpg')}}');"></div>
+                            <div class="latest-body">
+                                <h5 class="latest-category">Tecnología</h5>
+                                <h3 class="latest-title">Lanzamiento del nuevo iPhone revoluciona el mercado</h3>
+                            </div>
+                        </a>
+                    </div>
+            
+                    <!-- Noticia 3 -->
+                    <div class="col-md-4">
+                        <a href="#" class="latest-card">
+                            <div class="latest-image" style="background-image: url('{{asset('img/reciente3.jpg')}}');"></div>
+                            <div class="latest-body">
+                                <h5 class="latest-category">Deportes</h5>
+                                <h3 class="latest-title">América y Chivas se enfrentarán en la semifinal</h3>
+                            </div>
+                        </a>
+                    </div>
+            
+                    <!-- Noticia 4 -->
+                    <div class="col-md-4">
+                        <a href="#" class="latest-card">
+                            <div class="latest-image" style="background-image: url('{{asset('img/reciente4.jpg')}}');"></div>
+                            <div class="latest-body">
+                                <h5 class="latest-category">Economía</h5>
+                                <h3 class="latest-title">El peso alcanza su mejor nivel en 5 años</h3>
+                            </div>
+                        </a>
+                    </div>
+            
+                    <!-- Noticia 5 -->
+                    <div class="col-md-4">
+                        <a href="#" class="latest-card">
+                            <div class="latest-image" style="background-image: url('{{asset('img/reciente5.jpg')}}');"></div>
+                            <div class="latest-body">
+                                <h5 class="latest-category">Salud</h5>
+                                <h3 class="latest-title">Avances en la vacuna contra el cáncer</h3>
+                            </div>
+                        </a>
+                    </div>
+            
+                    <!-- Noticia 6 -->
+                    <div class="col-md-4">
+                        <a href="#" class="latest-card">
+                            <div class="latest-image" style="background-image: url('{{asset('img/reciente6.jpg')}}');"></div>
+                            <div class="latest-body">
+                                <h5 class="latest-category">Internacional</h5>
+                                <h3 class="latest-title">La ONU aprueba medidas contra el cambio climático</h3>
+                            </div>
+                        </a>
+                    </div>
+            
+                    <!-- Noticia 7 -->
+                    <div class="col-md-4">
+                        <a href="#" class="latest-card">
+                            <div class="latest-image" style="background-image: url('{{asset('img/reciente7.jpg')}}');"></div>
+                            <div class="latest-body">
+                                <h5 class="latest-category">Cultura</h5>
+                                <h3 class="latest-title">Nueva exposición de Frida Kahlo en CDMX</h3>
+                            </div>
+                        </a>
+                    </div>
+            
+                    <!-- Noticia 8 -->
+                    <div class="col-md-4">
+                        <a href="#" class="latest-card">
+                            <div class="latest-image" style="background-image: url('{{asset('img/reciente8.jpg')}}');"></div>
+                            <div class="latest-body">
+                                <h5 class="latest-category">Ciencia</h5>
+                                <h3 class="latest-title">Descubren planeta similar a la Tierra</h3>
+                            </div>
+                        </a>
+                    </div>
+            
+                    <!-- Noticia 9 -->
+                    <div class="col-md-4">
+                        <a href="#" class="latest-card">
+                            <div class="latest-image" style="background-image: url('{{asset('img/reciente9.jpg')}}');"></div>
+                            <div class="latest-body">
+                                <h5 class="latest-category">Educación</h5>
+                                <h3 class="latest-title">Reformas en el sistema educativo mexicano</h3>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </a>
-    
-            <!-- Noticia 2 -->
-            <a href="#" class="latest-card col-md-4">
-                <div class="latest-image" style="background-image: url('{{asset('img/reciente2.jpg')}}');"></div>
-                <div class="latest-body">
-                    <h5 class="latest-category">Tecnología</h5>
-                    <h3 class="latest-title">Lanzamiento del nuevo iPhone revoluciona el mercado</h3>
-                </div>
-            </a>
-    
-            <!-- Noticia 3 -->
-            <a href="#" class="latest-card col-md-4">
-                <div class="latest-image" style="background-image: url('{{asset('img/reciente3.jpg')}}');"></div>
-                <div class="latest-body">
-                    <h5 class="latest-category">Deportes</h5>
-                    <h3 class="latest-title">América y Chivas se enfrentarán en la semifinal</h3>
-                </div>
-            </a>
-    
-            <!-- Noticia 4 -->
-            <a href="#" class="latest-card col-md-4">
-                <div class="latest-image" style="background-image: url('{{asset('img/reciente4.jpg')}}');"></div>
-                <div class="latest-body">
-                    <h5 class="latest-category">Economía</h5>
-                    <h3 class="latest-title">El peso alcanza su mejor nivel en 5 años</h3>
-                </div>
-            </a>
-    
-            <!-- Noticia 5 -->
-            <a href="#" class="latest-card col-md-4">
-                <div class="latest-image" style="background-image: url('{{asset('img/reciente5.jpg')}}');"></div>
-                <div class="latest-body">
-                    <h5 class="latest-category">Salud</h5>
-                    <h3 class="latest-title">Avances en la vacuna contra el cáncer</h3>
-                </div>
-            </a>
-    
-            <!-- Noticia 6 -->
-            <a href="#" class="latest-card col-md-4">
-                <div class="latest-image" style="background-image: url('{{asset('img/reciente6.jpg')}}');"></div>
-                <div class="latest-body">
-                    <h5 class="latest-category">Internacional</h5>
-                    <h3 class="latest-title">La ONU aprueba medidas contra el cambio climático</h3>
-                </div>
-            </a>
-    
-            <!-- Noticia 7 -->
-            <a href="#" class="latest-card col-md-4">
-                <div class="latest-image" style="background-image: url('{{asset('img/reciente7.jpg')}}');"></div>
-                <div class="latest-body">
-                    <h5 class="latest-category">Cultura</h5>
-                    <h3 class="latest-title">Nueva exposición de Frida Kahlo en CDMX</h3>
-                </div>
-            </a>
-    
-            <!-- Noticia 8 -->
-            <a href="#" class="latest-card col-md-4">
-                <div class="latest-image" style="background-image: url('{{asset('img/reciente8.jpg')}}');"></div>
-                <div class="latest-body">
-                    <h5 class="latest-category">Ciencia</h5>
-                    <h3 class="latest-title">Descubren planeta similar a la Tierra</h3>
-                </div>
-            </a>
-    
-            <!-- Noticia 9 -->
-            <a href="#" class="latest-card col-md-4">
-                <div class="latest-image" style="background-image: url('{{asset('img/reciente9.jpg')}}');"></div>
-                <div class="latest-body">
-                    <h5 class="latest-category">Educación</h5>
-                    <h3 class="latest-title">Reformas en el sistema educativo mexicano</h3>
-                </div>
-            </a>
+            </div>
         </div>
     </div>
     <div class="see-more-container">
@@ -146,169 +214,228 @@
     </div>
 </section>
 
+<div class="container">
+    <div class="col-12 my-4">
+        <div class="ads ads-mid">
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-XXXXXXXXXXXX"
+                data-ad-slot="4444444444"
+                data-ad-format="auto"></ins>
+        </div>
+    </div>
+</div>
+
 <section class="container">
-    <div class="row justify-content-between g-4">
-        <section class="nscad col-4">
-            <div class="ctgagral">Política</div>
-            <article class="mnnws">
-                <img src="{{asset('img/reciente9.jpg')}}" alt="">
-                <span class="fchapbcn">12 de julio de 2025</span>
-                <h2>Impactante suceso cambia el rumbo de la ciudad</h2>
-            </article>
-            <article class="scdarnws">
-                <h3>Detalles adicionales del acontecimiento</h3>
-                <span class="fchapbnsdra">12 de julio de 2025</span>
-                <p>
-                    Las primeras declaraciones oficiales indican que el hecho podría tener implicaciones importantes...
-                </p>
-            </article>
-        </section>
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <section class="nscad">
+                <div class="ctgagral">Política</div>
+                <article class="mnnws">
+                    <img src="{{asset('img/reciente9.jpg')}}" alt="">
+                    <span class="fchapbcn">12 de julio de 2025</span>
+                    <h2 class="ttlprincl">Impactante suceso cambia el rumbo de la ciudad</h2>
+                </article>
+                <article class="scdarnws">
+                    <h3>Detalles adicionales del acontecimiento</h3>
+                    <span class="fchapbnsdra">12 de julio de 2025</span>
+                    <p>
+                        Las primeras declaraciones oficiales indican que el hecho podría tener implicaciones importantes...
+                    </p>
+                </article>
+            </section>
+        </div>
 
         <!-- Tarjeta 2 -->
-        <section class="nscad col-4">
-            <div class="ctgagral">Política</div>
-            <article class="mnnws">
-                <img src="{{asset('img/reciente9.jpg')}}" alt="">
-                <span class="fchapbcn">12 de julio de 2025</span>
-                <h2>Nueva tecnología promete mejorar la calidad de vida</h2>
-            </article>
-            <article class="scdarnws">
-                <h3>Desarrollo y pruebas iniciales</h3>
-                <span class="fchapbnsdra">12 de julio de 2025</span>
-                <p>
-                    Expertos señalan que esta innovación podría estar disponible al público antes de lo previsto...
-                </p>
-            </article>
-        </section>
+         <div class="col-4">
+             <section class="nscad">
+                 <div class="ctgagral">Política</div>
+                 <article class="mnnws">
+                     <img src="{{asset('img/reciente9.jpg')}}" alt="">
+                     <span class="fchapbcn">12 de julio de 2025</span>
+                     <h2>Nueva tecnología promete mejorar la calidad de vida</h2>
+                 </article>
+                 <article class="scdarnws">
+                     <h3>Desarrollo y pruebas iniciales</h3>
+                     <span class="fchapbnsdra">12 de julio de 2025</span>
+                     <p>
+                         Expertos señalan que esta innovación podría estar disponible al público antes de lo previsto...
+                     </p>
+                 </article>
+             </section>
+         </div>
 
         <!-- Tarjeta 3 -->
-        <section class="nscad col-4">
-            <div class="ctgagral">Política</div>
-            <article class="mnnws">
-                <img src="{{asset('img/reciente9.jpg')}}" alt="">
-                <span class="fchapbcn">12 de julio de 2025</span>
-                <h2>La economía presenta señales de recuperación</h2>
-            </article>
-            <article class="scdarnws">
-                <h3>Analistas optimistas</h3>
-                <span class="fchapbnsdra">12 de julio de 2025</span>
-                <p>
-                    Los indicadores comienzan a mostrar un comportamiento positivo luego de varios meses de incertidumbre…
-                </p>
-            </article>
-        </section>
+        <div class="col-4">
+            <section class="nscad">
+                <div class="ctgagral">Política</div>
+                <article class="mnnws">
+                    <img src="{{asset('img/reciente9.jpg')}}" alt="">
+                    <span class="fchapbcn">12 de julio de 2025</span>
+                    <h2>La economía presenta señales de recuperación</h2>
+                </article>
+                <article class="scdarnws">
+                    <h3>Analistas optimistas</h3>
+                    <span class="fchapbnsdra">12 de julio de 2025</span>
+                    <p>
+                        Los indicadores comienzan a mostrar un comportamiento positivo luego de varios meses de incertidumbre…
+                    </p>
+                </article>
+            </section>
+        </div>
 
         <!-- Tarjeta 4 -->
-        <section class="nscad col-4">
-            <div class="ctgagral">Política</div>
-            <article class="mnnws">
-                <img src="{{asset('img/reciente9.jpg')}}" alt="">
-                <span class="fchapbcn">12 de julio de 2025</span>
-                <h2>Descubren nueva especie en la selva amazónica</h2>
-            </article>
-            <article class="scdarnws">
-                <h3>Un hallazgo sorprendente</h3>
-                <span class="fchapbnsdra">12 de julio de 2025</span>
-                <p>
-                    Investigadores aseguran que esta especie podría aportar información valiosa sobre la biodiversidad...
-                </p>
-            </article>
-        </section>
+        <div class="col-4 mt-3">
+            <section class="nscad">
+                <div class="ctgagral">Política</div>
+                <article class="mnnws">
+                    <img src="{{asset('img/reciente9.jpg')}}" alt="">
+                    <span class="fchapbcn">12 de julio de 2025</span>
+                    <h2>Descubren nueva especie en la selva amazónica</h2>
+                </article>
+                <article class="scdarnws">
+                    <h3>Un hallazgo sorprendente</h3>
+                    <span class="fchapbnsdra">12 de julio de 2025</span>
+                    <p>
+                        Investigadores aseguran que esta especie podría aportar información valiosa sobre la biodiversidad...
+                    </p>
+                </article>
+            </section>
+        </div>
 
         <!-- Tarjeta 5 -->
-        <section class="nscad col-4">
-            <div class="ctgagral">Política</div>
-            <article class="mnnws">
-                <img src="{{asset('img/reciente9.jpg')}}" alt="">
-                <span class="fchapbcn">12 de julio de 2025</span>
-                <h2>Evento cultural reúne a miles de asistentes</h2>
-            </article>
-            <article class="scdarnws">
-                <h3>Un éxito total</h3>
-                <span class="fchapbnsdra">12 de julio de 2025</span>
-                <p>
-                    Artistas de todo el mundo participaron en esta edición que superó todas las expectativas...
-                </p>
-            </article>
-        </section>
+        <div class="col-4  mt-3">
+            <section class="nscad">
+                <div class="ctgagral">Política</div>
+                <article class="mnnws">
+                    <img src="{{asset('img/reciente9.jpg')}}" alt="">
+                    <span class="fchapbcn">12 de julio de 2025</span>
+                    <h2>Evento cultural reúne a miles de asistentes</h2>
+                </article>
+                <article class="scdarnws">
+                    <h3>Un éxito total</h3>
+                    <span class="fchapbnsdra">12 de julio de 2025</span>
+                    <p>
+                        Artistas de todo el mundo participaron en esta edición que superó todas las expectativas...
+                    </p>
+                </article>
+            </section>
+        </div>
 
         <!-- Tarjeta 6 -->
-        <section class="nscad col-4">
-            <div class="ctgagral">Política</div>
-            <article class="mnnws">
-                <img src="{{asset('img/reciente9.jpg')}}" alt="">
-                <span class="fchapbcn">12 de julio de 2025</span>
-                <h2>Aumentan campañas de concientización ambiental</h2>
-            </article>
-            <article class="scdarnws">
-                <h3>Participación de jóvenes</h3>
-                <span class="fchapbnsdra">12 de julio de 2025</span>
-                <p>
-                    Las nuevas generaciones están tomando un papel clave en la lucha contra el cambio climático...
-                </p>
-            </article>
-        </section>
+        <div class="col-4  mt-3">
+            <section class="nscad">
+                <div class="ctgagral">Política</div>
+                <article class="mnnws">
+                    <img src="{{asset('img/reciente9.jpg')}}" alt="">
+                    <span class="fchapbcn">12 de julio de 2025</span>
+                    <h2>Aumentan campañas de concientización ambiental</h2>
+                </article>
+                <article class="scdarnws">
+                    <h3>Participación de jóvenes</h3>
+                    <span class="fchapbnsdra">12 de julio de 2025</span>
+                    <p>
+                        Las nuevas generaciones están tomando un papel clave en la lucha contra el cambio climático...
+                    </p>
+                </article>
+            </section>
+        </div>
     </div>
+</section>
+
+<section class="ads ads-section-break container my-5">
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-XXXXXXXXXXXX"
+        data-ad-slot="5555555555"
+        data-ad-format="auto"></ins>
 </section>
 
 <!-- VIDEOS ANIMALITOS -->
 <section class="vdsamts">
     <header class="latest-news-header">
-        <h2 class="latest-news-title">Videos de animalitos</h2>
-        <div class="latest-badge">🐥 Tus videos favoritos</div>
-        <p class="latest-subheading">Lo mas tierno, lo más antiestres</p>
+        <h2 class="latest-news-title">Videos</h2>
+        <div class="latest-badge">Información cripto en videos</div>
+        <p class="latest-subheading">Entérate antes que nadie del mundo cripto</p>
     </header>
 
     <div class="container">
-        <div class="row justify-content-around">
-            <!-- Tarjeta 1 -->
-            <div class="vdacrd col-2">
-                <div class="vdothm">
-                    <video src="{{asset('videos/prueba.mp4')}}" muted></video>
-                </div>
-                <p class="vdodscpn">
-                    Un tierno gatito jugando con una bola de estambre mientras rueda por la sala.
-                </p>
-            </div>
+        <div class="row align-items-start">
+            <div class="col-3 ads-sidebar">
+                <aside class="ads-2 mb-4" style="width: 100%;">
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-XXXXXXXXXXXX"
+                        data-ad-slot="3333333333"
+                        data-ad-format="rectangle"></ins>
+                </aside>
 
-            <!-- Tarjeta 2 -->
-            <div class="vdacrd col-2">
-                <div class="vdothm">
-                    <video src="{{asset('videos/prueba.mp4')}}" muted></video>
-                </div>
-                <p class="vdodscpn">
-                    Un perrito bebé persiguiendo burbujas en un jardín soleado.
-                </p>
-            </div>
+                <aside class="ads-2 mb-4" style="width: 100%;">
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-XXXXXXXXXXXX"
+                        data-ad-slot="3333333333"
+                        data-ad-format="rectangle"></ins>
+                </aside>
 
-            <!-- Tarjeta 3 -->
-            <div class="vdacrd col-2">
-                <div class="vdothm">
-                    <video src="{{asset('videos/prueba.mp4')}}" muted></video>
-                </div>
-                <p class="vdodscpn">
-                    Un hamster corriendo dentro de una mini pista de obstáculos súper ingeniosa.
-                </p>
+                <aside class="ads-2 mb-4" style="width: 100%;">
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-XXXXXXXXXXXX"
+                        data-ad-slot="3333333333"
+                        data-ad-format="rectangle"></ins>
+                </aside>                
             </div>
-
-            <!-- Tarjeta 4 -->
-            <div class="vdacrd col-2">
-                <div class="vdothm">
-                    <video src="{{asset('videos/prueba.mp4')}}" muted></video>
+            <div class="col-9">
+                <div class="row">
+                    <!-- Tarjeta 1 -->
+                    <div class="col-6 mt-4">
+                        <div class="vdacrd">
+                            <div class="vdothm">
+                                <video src="{{asset('videos/prueba.mp4')}}" muted></video>
+                            </div>
+                            <p class="vdodscpn">
+                                Un tierno gatito jugando con una bola de estambre mientras rueda por la sala.
+                            </p>
+                        </div>
+                    </div>
+        
+                    <!-- Tarjeta 2 -->
+                    <div class="col-6 mt-4">
+                        <div class="vdacrd">
+                            <div class="vdothm">
+                                <video src="{{asset('videos/prueba.mp4')}}" muted></video>
+                            </div>
+                            <p class="vdodscpn">
+                                Un perrito bebé persiguiendo burbujas en un jardín soleado.
+                            </p>
+                        </div>
+                    </div>
+        
+                    <!-- Tarjeta 3 -->
+                    <div class="col-6 mt-4">
+                        <div class="vdacrd">
+                            <div class="vdothm">
+                                <video src="{{asset('videos/prueba.mp4')}}" muted></video>
+                            </div>
+                            <p class="vdodscpn">
+                                Un hamster corriendo dentro de una mini pista de obstáculos súper ingeniosa.
+                            </p>
+                        </div>
+                    </div>
+        
+                    <!-- Tarjeta 4 -->
+                    <div class="col-6 mt-4">
+                        <div class="vdacrd">
+                            <div class="vdothm">
+                                <video src="{{asset('videos/prueba.mp4')}}" muted></video>
+                            </div>
+                            <p class="vdodscpn">
+                                Un pequeño patito intentando imitar a su mamá mientras caminan juntos.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <p class="vdodscpn">
-                    Un pequeño patito intentando imitar a su mamá mientras caminan juntos.
-                </p>
-            </div>
-
-            <!-- Tarjeta 5 -->
-            <div class="vdacrd col-2">
-                <div class="vdothm">
-                    <video src="{{asset('videos/prueba.mp4')}}" muted></video>
-                </div>
-                <p class="vdodscpn">
-                    Un zorrillito bebé explorando por primera vez un bosque lleno de hojas.
-                </p>
             </div>
         </div>
     </div>

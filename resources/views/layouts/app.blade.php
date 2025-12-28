@@ -25,7 +25,7 @@
         <button class="suscribirse">Suscribirse</button>
     </header>
 
-    <main class="mt-5">
+    <main class="fondochingon">
         @yield('contenido')
     </main>
 
