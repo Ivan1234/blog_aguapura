@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Subscriber;
 use App\Models\Campaign;
+use App\Jobs\SendCampaignJob;
 use App\Mail\ConfirmSubscriptionMail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 
@@ -49,5 +51,48 @@ class NewsLetterController extends Controller
         Campaign::create($validated);
 
         return back()->with('success', 'Campaña creada correctamente');
+    }
+
+    public function envioMasivo(Campaign $campaign)
+    {
+        try{
+            //Se verifica que la campaña no haya sido ya enviada o este en proceso
+            if($campaign->status === 'enviado' || $campaign->status === 'procesando'){
+                return back()->with('error', 'Esta campaña ya ha sido enviada o esta en proceso.');
+            }
+
+            //Se actualiza el status a procesando, de esta forma el scheduler del kernel ya no lo tomará
+            $campaign->update([
+                'status'        => 'procesando',
+                'scheduled_at'  => now()
+            ]);
+
+            //Despachar el job a la cola
+            SendCampaignJob::dispatch($campaign);
+
+            return back()->with('success', 'La campaña se ha puesto en cola y comenzará a enviarse en unos momentos');
+        }catch(\Exception $e){
+            $campaign->update([
+                'status' => 'borrador'
+            ]);
+
+            Log::error("Error al intentar enviar la campaña {$campaign->id}: " . $e->getMessage());
+
+            return back()->with('error', 'Ocurrió un error al intentar procesar el envío.');
+        }
+    }
+
+    public function programarCampania(Request $request, Campaign $campaign)
+    {
+        $validated = $request->validate([
+            'scheduled_at' => 'required|date|after:now'
+        ]);
+
+        $campaign->update([
+            'status'        => 'programado',
+            'scheduled_at'  => $validated['scheduled_at'] 
+        ]);
+
+        return back()->with('success', 'Campaña programada exitosamente para el' . $campaign->scheduled_at);
     }
 }

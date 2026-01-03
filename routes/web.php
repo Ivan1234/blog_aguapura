@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NoticiaController;
+use App\Http\Controllers\NewsLetterController;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -36,6 +37,12 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::controller(NoticiaController::class)->group(function(){
     Route::get('/newsc', 'index')->name('noticias.index');
     Route::get('/newsc/{noticia}', 'show')->name('noticias.show');
+});
+
+
+Route::controller(NewsLetterController::class)->group(function(){
+    Route::post('/send-now/{$campaign}', 'envioMasivo')->name('campaigns.send-now');
+    Route::post('/schedule/{$campaign}', 'programarCampania')->name('campaigns.schedule');
 });
 
 // Route::middleware(['auth'])->group(function () {

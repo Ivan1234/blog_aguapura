@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('asunto');
             $table->longText('contenido');
             $table->timestamp('scheduled_at')->nullable();
-            $table->enum('status', ['borrador', 'programado', 'enviado'])->default('borrador');
+            $table->enum('status', ['borrador', 'programado', 'procesando', 'enviado'])->default('borrador');
             $table->timestamps();
         });
     }
