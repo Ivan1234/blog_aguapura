@@ -43,6 +43,8 @@ Route::controller(NoticiaController::class)->group(function(){
 Route::controller(NewsLetterController::class)->group(function(){
     Route::post('/send-now/{$campaign}', 'envioMasivo')->name('campaigns.send-now');
     Route::post('/schedule/{$campaign}', 'programarCampania')->name('campaigns.schedule');
+    Route::get('/newsletter/confirm/{$token}', 'confirm')->name('newsletter.confirm')->middleware('signed');
+    Route::get('/newsletter/unsubscribe/{$token}', 'unsubscribe')->name('newsletter.unsubscribe')->middleware('signed');
 });
 
 // Route::middleware(['auth'])->group(function () {

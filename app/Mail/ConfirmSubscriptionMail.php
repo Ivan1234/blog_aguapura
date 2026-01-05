@@ -2,12 +2,15 @@
 
 namespace App\Mail;
 
+use App\Models\Subscriber;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\URL;
 
 class ConfirmSubscriptionMail extends Mailable
 {
@@ -16,7 +19,7 @@ class ConfirmSubscriptionMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public Subscriber $subscriber)
     {
         //
     }
@@ -27,7 +30,8 @@ class ConfirmSubscriptionMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Confirm Subscription Mail',
+            subject:    'Confirma tu suscripción a la Newsletter de...',
+            from:       new Address('no-reply@dominio.com', 'Dominio com')
         );
     }
 
@@ -37,7 +41,11 @@ class ConfirmSubscriptionMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.newsletter.confirm',
+            with: [
+                'nombre'            => $this->subscriber->name,
+                'confirmationUrl'   => URL::signedRoute('newsletter.confirm', now()->addDays(2), ['token' => $subscriber->token])
+            ]
         );
     }
 

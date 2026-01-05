@@ -11,6 +11,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\URL;
 
 class CampaignMail extends Mailable
 {
@@ -41,10 +42,12 @@ class CampaignMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.campaign',
+            view: 'emails.newsletter.campaign',
             with: [
-                'content' => $this->campaign->contenido,
-                'subscriberName' => $this->subscriber->nombre
+                'contenido'         => $this->campaign->contenido,
+                'subscriberNombre'  => $this->subscriber->nombre,
+                'asunto'            => $this->campaign->asunto,
+                'unsubscribeUrl'    => URL::signedRoute('newsletter.unsubscribe', ['token' => $this->subscriber->token])
             ]
         );
     }

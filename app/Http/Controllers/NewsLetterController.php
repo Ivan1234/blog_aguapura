@@ -53,6 +53,26 @@ class NewsLetterController extends Controller
         return back()->with('success', 'Campaña creada correctamente');
     }
 
+    public function unsubscribe($token)
+    {
+        $subscriber = Subscriber::where('token', $token)->first();
+
+        if(!$subscriber){
+            return response()->view('newsletter.error', [
+                'message' => 'Enlace de baja inválido'
+            ], 404);
+        }
+
+        $subscriber->update([
+            'confirmed' => false
+        ]);
+
+        $subscriber->delete();
+
+        //Vista de despedida
+        return view('newsletter.unsubscribed_success');
+    }
+
     public function envioMasivo(Campaign $campaign)
     {
         try{
