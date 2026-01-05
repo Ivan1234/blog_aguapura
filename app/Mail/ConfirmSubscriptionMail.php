@@ -44,7 +44,7 @@ class ConfirmSubscriptionMail extends Mailable
             view: 'emails.newsletter.confirm',
             with: [
                 'nombre'            => $this->subscriber->name,
-                'confirmationUrl'   => URL::signedRoute('newsletter.confirm', now()->addDays(2), ['token' => $subscriber->token])
+                'confirmationUrl'   => URL::temporarySignedRoute('newsletter.confirm', now()->addDays(2), ['token' => $this->subscriber->token])
             ]
         );
     }

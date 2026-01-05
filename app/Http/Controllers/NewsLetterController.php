@@ -16,11 +16,15 @@ class NewsLetterController extends Controller
     public function subscribe(Request $request)
     {
         $validated = $request->validate([
-            'email' => 'required|email|unique:subscribers,email',
+            'email' => 'required|email:rfc,dns|unique:subscribers,email',
+            'nombre' => 'required|string|min:3|regex:/^[a-zA-ZÀ-ÿ\s\'\.\-]+$/u'
+        ],[
+            'nombre.regex' => 'El nombre contiene caracteres no permitidos'
         ]);
 
         $subscriber = Subscriber::create([
             'email' => $validated['email'],
+            'nombre' => $validated['nombre'],
             'token' => Str::uuid(),
         ]);
 

@@ -444,4 +444,153 @@
         <button class="btnmstms">Mostrar más</button>
     </div>
 </section>
+
+<!-- MODALES -->
+<div class="modal fade" id="newsletterModal" tabindex="-1" aria-labelledby="newsletterModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-secondary shadow-2xl custom-dark-modal">
+      
+      <div class="modal-header border-0 pb-0">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body px-5 pb-5">
+        <div class="text-center mb-4">
+          <div class="icon-box-dark mb-3">
+             <i class="bi bi-send-check"></i>
+          </div>
+          <h3 class="modal-title fw-bold text-white" id="newsletterModalLabel">Únete al lado oscuro</h3>
+          <p class="text-secondary">Contenido exclusivo y actualizaciones directamente a tu bandeja.</p>
+        </div>
+
+        <form action="{{ route('newsletter.subscribe') }}" method="POST" id="formNewsletter1">
+          @csrf
+          
+          <div class="mb-3">
+            <label for="nombre" class="form-label small fw-bold text-uppercase text-secondary">Nombre completo</label>
+            <input type="text" name="nombre" class="form-control form-control-lg dark-input" placeholder="Ej. Juan Pérez" id="inputNombre">
+            <div id="nombre-error1" class="text-danger small mt-2" style="display: none;">
+                Por favor, ingresa un nombre válido.
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="email" class="form-label small fw-bold text-uppercase text-secondary">Correo electrónico</label>
+            <input type="email" name="email" class="form-control form-control-lg dark-input" id="emailNewsLetter1" placeholder="juan@ejemplo.com" autocomplete="email">
+            <div id="email-error1" class="text-danger small mt-2" style="display: none;">
+                Por favor, ingresa un correo electrónico válido.
+            </div>
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn-primary-dark btn-lg fw-bold" id="btnSubscribe1">
+              Confirmar suscripción
+            </button>
+          </div>
+          
+          <p class="text-center small text-secondary mt-3 mb-0">
+            Sin spam, solo valor. Te lo prometemos.
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="nameOnlyModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-secondary custom-dark-modal shadow-2xl">
+      
+      <div class="modal-header border-0 pb-0">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body px-5 pb-5 text-center">
+        <div class="icon-box-dark mb-4">
+           <i class="bi bi-person-badge"></i>
+        </div>
+
+        <h3 class="fw-bold text-white mb-2">¿Cómo te llamas?</h3>
+        <p class="text-secondary mb-4">Queremos personalizar tu experiencia con nosotros.</p>
+
+        <form action="{{ route('newsletter.subscribe') }}" method="POST" class="formNewsletter">
+          @csrf
+          <div class="mb-4">
+            <input type="text" name="nombre" class="form-control form-control-lg dark-input text-center" placeholder="Escribe tu nombre completo" autocomplete="name">
+            <input type="hidden" name="email">
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn-primary-dark btn-lg fw-bold py-3 btnSubscribe">
+              Continuar <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+    let emailValue = null;
+    const formNewsletter1 = $("#formNewsletter1");
+    const btnSubscribe1 = $("#btnSubscribe1");
+    const nombreError1 = $("#nombre-error1");
+    const inputNombre = $("#inputNombre");
+    const emailError1 = $("#email-error1");
+    const emailNewsletter1 = $("#emailNewsLetter1");
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const nameRegex = /^[a-zA-ZÀ-ÿ](?!.*[<>\"'%;()&])[\s'a-zA-ZÀ-ÿ.-]{2,60}$/;
+
+    btnSubscribe1.click(function(e){
+        e.preventDefault();
+
+        const nombre = $("input[name='nombre']").val().trim();
+        emailValue = $("input[name='email']").val().trim();
+
+        if(nombre === "" || !nameRegex.test(nombre)){
+            nombreError1.css({"display":"block"});
+            inputNombre.addClass('is-invalid');
+            return;
+        }
+
+        nombreError1.css({"display":"none"});
+        inputNombre.removeClass('is-invalid');
+
+        if(emailValue === "" || !emailPattern.test(emailValue)){
+            emailError1.css({"display":"block"});
+            emailNewsletter1.addClass('is-invalid');
+            return;
+        }
+
+        emailError1.css({"display":"none"});
+        emailNewsletter1.removeClass('is-invalid');
+
+        formNewsletter1.submit();
+    });
+
+    function validaryabrir(){
+        const emailNewsletter = $("#emailNewsletter");
+        emailValue = emailNewsletter.val().trim();
+        const errorMsg = $("#email-error");
+
+        if(emailValue === "" || !emailPattern.test(emailValue)){
+            errorMsg.css({"display":"block"});
+            emailNewsletter.addClass('is-invalid');
+            return;
+        }
+
+        errorMsg.css({"display":"none"});
+        emailNewsletter.removeClass('is-invalid');
+
+        $("input[name='email']").val(emailValue);
+        const nameOnlyModal = new bootstrap.Modal(document.getElementById('nameOnlyModal'));
+        nameOnlyModal.show();
+    }
+</script>
 @endsection

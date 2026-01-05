@@ -22,7 +22,7 @@
             <a href="#">Ciencia</a>
             <a href="#">Tecnología</a>
         </nav>
-        <button class="suscribirse">Suscribirse</button>
+        <button type="button" class="suscribirse" data-bs-toggle="modal" data-bs-target="#newsletterModal" id="nwsltrmdl1">Suscribirse</button>
     </header>
 
     <main class="fondochingon">
@@ -73,9 +73,12 @@
                     <p class="ftrdsc">Recibe las noticias más importantes del día directamente en tu correo.</p>
 
                     <form class="ftrnsltr">
-                        <input type="email" placeholder="Tu correo electrónico">
-                        <button type="submit">Suscribirme</button>
+                        <input type="email" placeholder="Tu correo electrónico" id="emailNewsletter">
+                        <button type="button" onClick="validaryabrir()">Suscribirme</button>
                     </form>
+                    <div id="email-error" class="text-danger small mt-2" style="display: none;">
+                        Por favor, ingresa un correo electrónico válido.
+                    </div>
                 </div>
             </div>
 
@@ -84,5 +87,9 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    @yield('scripts')
 </body>
 </html>
