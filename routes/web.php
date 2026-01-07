@@ -51,8 +51,9 @@ Route::controller(NewsLetterController::class)->group(function(){
         if(!session('nombre')) return redirect()->route('home');
 
         return view('newsletter.subscribed', [
-            'nombre' => session('nombre'),
-            'email' => session('email')
+            'nombre'    => session('nombre'),
+            'email'     => session('email'),
+            'previo'    => session('previo')
         ]);
     })->name('newsletter.success');
 });

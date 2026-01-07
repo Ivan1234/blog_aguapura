@@ -623,6 +623,8 @@
         emailError1.css({"display":"none"});
         emailNewsletter1.removeClass('is-invalid');
 
+        $(this).prop('disabled', true);
+
         formNewsletter1.submit();
     });
 
@@ -640,6 +642,7 @@
         nombreError2.css({"display":"none"});
         inputNombre2.removeClass('is-invalid');
 
+        $(this).prop('disabled', true);
         formNewsletter2.submit();
     });
 

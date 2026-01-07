@@ -103,6 +103,12 @@
 
         startTimer();
     });
+
+    @if(session('previo'))
+    const form = document.getElementById('resend-form');
+
+    form.submit();
+    @endif
 </script>
 </body>
 </html>

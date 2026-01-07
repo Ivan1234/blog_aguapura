@@ -17,17 +17,32 @@ class NewsLetterController extends Controller
     {
         $bgName = $request->input('name_type');
 
+        if(!in_array($bgName, ['footer', 'header'])){
+            return back()->withErrors('name_type', 'No tiene los valores permitidos');
+        }
+
+        //Verificamos si el correo ya existe
+        $suscriptorExistente = Subscriber::where('email', $request->input('email'))->first();
+
+        if($suscriptorExistente && !$suscriptorExistente->confirmed_at){
+            return redirect()->route('newsletter.success')->with([
+                'nombre'    => $suscriptorExistente->nombre,
+                'email'     => $suscriptorExistente->email,
+                'previo'    => true
+            ]);
+        }
+
         $validated = $request->validateWithBag($bgName, [
-            'email' => 'required|email:rfc,dns|unique:subscribers,email',
-            'nombre' => 'required|string|min:3|regex:/^[a-zA-ZÀ-ÿ\s\'\.\-]+$/u'
+            'email'     => 'required|email:rfc,dns|unique:subscribers,email',
+            'nombre'    => 'required|string|min:3|regex:/^[a-zA-ZÀ-ÿ\s\'\.\-]+$/u'
         ],[
             'nombre.regex' => 'El nombre contiene caracteres no permitidos'
         ]);
 
         $subscriber = Subscriber::create([
-            'email' => $validated['email'],
-            'nombre' => $validated['nombre'],
-            'token' => Str::uuid(),
+            'email'     => $validated['email'],
+            'nombre'    => $validated['nombre'],
+            'token'     => Str::uuid(),
         ]);
 
         Mail::to($subscriber->email)->queue(
@@ -36,7 +51,8 @@ class NewsLetterController extends Controller
 
         return redirect()->route('newsletter.success')->with([
             'nombre'    => $subscriber->nombre,
-            'email'     => $subscriber->email
+            'email'     => $subscriber->email,
+            'previo'    => false
         ]);
 
     }
@@ -141,7 +157,8 @@ class NewsLetterController extends Controller
 
             return redirect()->route('newsletter.success')->with([
                 'nombre'    => $suscriptor->nombre,
-                'email'     => $suscriptor->email
+                'email'     => $suscriptor->email,
+                'previo'    => false
             ]);
         }
 
