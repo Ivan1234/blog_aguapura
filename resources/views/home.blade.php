@@ -468,7 +468,7 @@
           
           <div class="mb-3">
             <label for="nombre" class="form-label small fw-bold text-uppercase text-secondary">Nombre completo</label>
-            <input type="text" name="nombre" class="form-control form-control-lg dark-input" placeholder="Ej. Juan Pérez" id="inputNombre">
+            <input type="text" name="nombre" class="form-control form-control-lg dark-input" placeholder="Ej. Juan Pérez" id="inputNombre" value="{{ old('nombre') }}">
             <div id="nombre-error1" class="text-danger small mt-2" style="display: none;">
                 Por favor, ingresa un nombre válido.
             </div>
@@ -476,7 +476,8 @@
 
           <div class="mb-4">
             <label for="email" class="form-label small fw-bold text-uppercase text-secondary">Correo electrónico</label>
-            <input type="email" name="email" class="form-control form-control-lg dark-input" id="emailNewsLetter1" placeholder="juan@ejemplo.com" autocomplete="email">
+            <input type="email" name="email" class="form-control form-control-lg dark-input" id="emailNewsLetter1" placeholder="juan@ejemplo.com" autocomplete="email" value="{{ old('email') }}">
+            <input type="hidden" name="name_type" value="header">
             <div id="email-error1" class="text-danger small mt-2" style="display: none;">
                 Por favor, ingresa un correo electrónico válido.
             </div>
@@ -492,6 +493,22 @@
             Sin spam, solo valor. Te lo prometemos.
           </p>
         </form>
+
+        @if($errors->header->any())
+            <div class="alert alert-danger border-0 shadow-sm d-flex align-items-center mt-4 mb-2" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-3" viewBox="0 0 16 16">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+                <div>
+                    <ul class="list-unstyled mb-0">
+                        @foreach($errors->header->all() as $error)
+                            <li class="small fw-bold">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
       </div>
 
     </div>
@@ -514,21 +531,40 @@
         <h3 class="fw-bold text-white mb-2">¿Cómo te llamas?</h3>
         <p class="text-secondary mb-4">Queremos personalizar tu experiencia con nosotros.</p>
 
-        <form action="{{ route('newsletter.subscribe') }}" method="POST" class="formNewsletter">
+        <form action="{{ route('newsletter.subscribe') }}" method="POST" id="formNewsletter2">
           @csrf
           <div class="mb-4">
-            <input type="text" name="nombre" class="form-control form-control-lg dark-input text-center" placeholder="Escribe tu nombre completo" autocomplete="name">
+            <input type="text" name="nombre" class="form-control form-control-lg dark-input text-center" placeholder="Escribe tu nombre completo" autocomplete="nombre" id="inputNombre2">
             <input type="hidden" name="email">
+            <input type="hidden" name="name_type" value="footer">
+            <div id="nombre-error2" class="text-danger small mt-2" style="display: none;">
+                Por favor, ingresa un nombre válido.
+            </div>
           </div>
 
           <div class="d-grid">
-            <button type="submit" class="btn-primary-dark btn-lg fw-bold py-3 btnSubscribe">
+            <button type="submit" class="btn-primary-dark btn-lg fw-bold py-3" id="btnSubscribe2">
               Continuar <i class="bi bi-arrow-right ms-2"></i>
             </button>
           </div>
         </form>
-      </div>
 
+        @if($errors->footer->any())
+            <div class="alert alert-danger border-0 shadow-sm d-flex align-items-center mt-4 mb-2" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-3" viewBox="0 0 16 16">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+                <div>
+                    <ul class="list-unstyled mb-0">
+                        @foreach($errors->footer->all() as $error)
+                            <li class="small fw-bold">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+      </div>
     </div>
   </div>
 </div>
@@ -537,6 +573,7 @@
 @section('scripts')
 <script>
     let emailValue = null;
+    let nombre = null;
     const formNewsletter1 = $("#formNewsletter1");
     const btnSubscribe1 = $("#btnSubscribe1");
     const nombreError1 = $("#nombre-error1");
@@ -544,13 +581,28 @@
     const emailError1 = $("#email-error1");
     const emailNewsletter1 = $("#emailNewsLetter1");
 
+    const btnSubscribe2 = $("#btnSubscribe2");
+    const nombreError2 = $("#nombre-error2");
+    const inputNombre2 = $("#inputNombre2");
+    const formNewsletter2 = $("#formNewsletter2");
+
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const nameRegex = /^[a-zA-ZÀ-ÿ](?!.*[<>\"'%;()&])[\s'a-zA-ZÀ-ÿ.-]{2,60}$/;
+
+    @if($errors->footer->any())
+    const modalFooter = new bootstrap.Modal(document.getElementById('nameOnlyModal'));
+    modalFooter.show();
+    @endif
+
+    @if($errors->header->any())
+    const modalHeader = new bootstrap.Modal(document.getElementById('newsletterModal'));
+    modalHeader.show();
+    @endif
 
     btnSubscribe1.click(function(e){
         e.preventDefault();
 
-        const nombre = $("input[name='nombre']").val().trim();
+        nombre = $("input[name='nombre']").val().trim();
         emailValue = $("input[name='email']").val().trim();
 
         if(nombre === "" || !nameRegex.test(nombre)){
@@ -572,6 +624,23 @@
         emailNewsletter1.removeClass('is-invalid');
 
         formNewsletter1.submit();
+    });
+
+    btnSubscribe2.click(function(e){
+        e.preventDefault();
+
+        nombre = $("input[name='nombre']:eq(1)").val().trim();
+
+        if(nombre === "" || !nameRegex.test(nombre)){
+            nombreError2.css({"display":"block"});
+            inputNombre2.addClass('is-invalid');
+            return;
+        }
+
+        nombreError2.css({"display":"none"});
+        inputNombre2.removeClass('is-invalid');
+
+        formNewsletter2.submit();
     });
 
     function validaryabrir(){

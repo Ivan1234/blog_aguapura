@@ -15,7 +15,9 @@ class NewsLetterController extends Controller
 {
     public function subscribe(Request $request)
     {
-        $validated = $request->validate([
+        $bgName = $request->input('name_type');
+
+        $validated = $request->validateWithBag($bgName, [
             'email' => 'required|email:rfc,dns|unique:subscribers,email',
             'nombre' => 'required|string|min:3|regex:/^[a-zA-ZÀ-ÿ\s\'\.\-]+$/u'
         ],[
@@ -32,7 +34,11 @@ class NewsLetterController extends Controller
             new ConfirmSubscriptionMail($subscriber)
         );
 
-        return response()->json(['message' => 'Confirma tu correo']);
+        return redirect()->route('newsletter.success')->with([
+            'nombre'    => $subscriber->nombre,
+            'email'     => $subscriber->email
+        ]);
+
     }
 
     public function confirm($token)
@@ -118,5 +124,27 @@ class NewsLetterController extends Controller
         ]);
 
         return back()->with('success', 'Campaña programada exitosamente para el' . $campaign->scheduled_at);
+    }
+
+    public function reenviarCorreo(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email:rfc,dns'
+        ]);
+
+        $suscriptor = Subscriber::where('email', $validated['email'])->first();
+
+        if($suscriptor){
+            Mail::to($suscriptor->email)->queue(
+                new ConfirmSubscriptionMail($suscriptor)
+            );
+
+            return redirect()->route('newsletter.success')->with([
+                'nombre'    => $suscriptor->nombre,
+                'email'     => $suscriptor->email
+            ]);
+        }
+
+        return back()->withErrors(['email' => 'No encontramos un registro con ese correo']);
     }
 }

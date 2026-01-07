@@ -46,6 +46,15 @@ Route::controller(NewsLetterController::class)->group(function(){
     Route::post('/newsletter/subscribe', 'subscribe')->name('newsletter.subscribe');
     Route::get('/newsletter/confirm/{token}', 'confirm')->name('newsletter.confirm')->middleware('signed');
     Route::get('/newsletter/unsubscribe/{token}', 'unsubscribe')->name('newsletter.unsubscribe')->middleware('signed');
+    Route::post('/newsletter/resend', 'reenviarCorreo')->name('newsletter.resend');
+    Route::get('/newsletter/success', function(){
+        if(!session('nombre')) return redirect()->route('home');
+
+        return view('newsletter.subscribed', [
+            'nombre' => session('nombre'),
+            'email' => session('email')
+        ]);
+    })->name('newsletter.success');
 });
 
 // Route::middleware(['auth'])->group(function () {
