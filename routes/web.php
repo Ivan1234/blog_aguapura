@@ -22,14 +22,14 @@ use Illuminate\Support\Facades\Hash;
 
 Route::controller(AuthController::class)->group(function(){
     Route::get('/login', 'showLoginForm')->name('login_view');
-    Route::post('/login', 'login')->name('login');
+    Route::post('/login', 'login')->name('login')->middleware('throttle:5,1'); //Máximo 5 intentos por minuto
     Route::get('/register', 'showRegisterForm')->name('register_view');
-    Route::post('/register', 'register')->name('register');
+    Route::post('/register', 'register')->name('register')->middleware('throttle:5,1');
     Route::post('/logout', 'logout')->name('logout');
-    Route::get('/forgot-password', 'showFPForm')->name('forgot_password_view');
-    Route::post('/forgot-password', 'forgotPassword')->name('forgot_password')->middleware('check.role:suscriptor');
-    Route::get('/reset-password/{token}', 'showRPForm')->name('reset_password_view')->middleware('auth');
-    Route::post('/reset-password', 'resetPassword')->name('reset_password')->middleware('check.role:suscriptor')->middleware('auth');
+    Route::get('/forgot-password', 'showFPForm')->name('forgot_password_view')->middleware('guest');
+    Route::post('/forgot-password', 'forgotPassword')->name('forgot_password')->middleware('guest');
+    Route::get('/reset-password/{token}', 'showRPForm')->name('reset_password_view')->middleware('guest');
+    Route::post('/reset-password', 'resetPassword')->name('reset_password')->middleware('guest');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -58,17 +58,17 @@ Route::controller(NewsLetterController::class)->group(function(){
     })->name('newsletter.success');
 });
 
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     });
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('admin.dashboard');
 
-//     Route::middleware(['role:admin'])->group(function () {
-//         Route::get('/admin-panel', fn() => view('admin.panel'));
-//     });
+    Route::middleware(['role:admin'])->group(function () {
+        Route::get('/admin-panel', fn() => view('admin.panel'));
+    });
 
-//     Route::middleware(['role:redactor'])->group(function () {
-//         Route::get('/editor', fn() => view('redactor.editor'));
-//     });
-// });
+    Route::middleware(['role:redactor'])->group(function () {
+        Route::get('/editor', fn() => view('redactor.editor'));
+    });
+});
 

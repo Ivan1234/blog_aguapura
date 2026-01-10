@@ -15,14 +15,20 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) {
-        $credentials = $request->only('email', 'password');
-        $remember = $request->has('remember');
+        $validated = $request->validate([
+            'email'     => 'required|email|string',
+            'password'  => 'required|string'
+        ]);
 
-        if (Auth::attempt($credentials, $remember)) {
-            return redirect()->intended('/dashboard');
+        $rememberme = $request->boolean('remember');
+
+        if(Auth::attempt($validated, $rememberme)){
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('admin.dashboard'))->with('status', '¡Bienvenido de nuevo!');
         }
 
-        return back()->withErrors(['email' => 'Credenciales incorrectas']);
+        return back()->withErrors(['email' => __('auth.failed')])->withInput($request->only('email'));
     }
 
     public function showRegisterForm() {
@@ -30,20 +36,23 @@ class AuthController extends Controller
     }
 
     public function register(Request $request) {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
+        $validated = $request->validated([
+            'name'      => 'required|string|max:255',
+            'email'     => 'required|string|email|max:255|unique:users',
+            'phone'     => 'required|string|max:20',
+            'password'  => 'required|string|min:8|confirmed'
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+        Users::create([
+            'name'          => $validated['name'],
+            'email'         => $validated['email'],
+            'phone_number'  => $validated['phone'],
+            'password'      => Hash::make($validated['password'])
         ]);
 
         Auth::login($user);
-        return redirect('/dashboard');
+
+        return redirect()->route('admin.dashboard')->with('success', '¡Cuenta creada con éxito! Bienvenido.');
     }
 
     public function logout() {
@@ -58,11 +67,13 @@ class AuthController extends Controller
     public function forgotPassword(Request $request){
         $request->validate(['email' => 'required|email']);
 
-        Password::sendResetLink(
+        $status = Password::sendResetLink(
             $request->only('email')
         );
 
-        return back()->with('status', 'Enlace enviado a tu correo.');
+        return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]); 
     }
 
     public function showRPForm($token){
@@ -71,9 +82,9 @@ class AuthController extends Controller
 
     public function resetPassword(Request $request){
         $request->validate([
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:6|confirmed',
+            'token'     => 'required',
+            'email'     => 'required|email',
+            'password'  => 'required|min:8|confirmed',
         ]);
 
         $status = Password::reset(
@@ -81,7 +92,11 @@ class AuthController extends Controller
             function ($user, $password) {
                 $user->forceFill([
                     'password' => Hash::make($password)
-                ])->save();
+                ])->setRememberToken(Str::random(60));
+
+                $user->save();
+
+                event(new PasswordReset($user));
             }
         );
 

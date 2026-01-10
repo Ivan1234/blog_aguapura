@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone_number')->unique();
+            $table->string('verification_code')->nullable();
+            $table->timestamp('phone_verificated_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['suscriptor', 'redactor', 'admin'])->default('suscriptor');
+            $table->enum('role', ['redactor', 'admin'])->default('suscriptor');
             $table->rememberToken();
             $table->timestamps();
         });
